@@ -9,4 +9,4 @@ I thought about breadboarding the circuits to try them out, but it's hard to hoo
 
 Then the idea came to keep the pedal form-factor but make replacing the electronics easier by replacing the circuit board with a breadboard.  Not only does this make changing the pedal completely possible, it makes tweaking the design "in-situ" simple.
 
-I also chose a breadboard size that exactly matches the [Adafruit perma-proto]() so it can also be used for permanent designs if so desired.
+I also chose a breadboard size that exactly matches the [Adafruit perma-proto](https://www.adafruit.com/product/571) so it can also be used for permanent designs if so desired.
