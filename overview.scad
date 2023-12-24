@@ -5,24 +5,19 @@
     width: 56
     height: 9.6
     
-    TODO: Adafruit perma-proto dimensions
-    length:
-    width:
-    height:
-    mounting holes
+    TODO: measure actual potentiometer dimensions
+    TODO: measure actual 1/4" jack dimensions
+    TODO: measure actual power jack dimensions
+    TODO: measure actual knob dimensions
+    TODO: measure actual footswitch dimensions
     
-    TODO: potentiometer dimensions
-    TODO: 1/4" jack dimensions
-    TODO: power jack dimensions
-    TODO: knob dimensions
-    TODO: footswitch dimensions
-    
-    overall pedal dimensions
+    starting point for overall pedal dimensions
     length: 127 // 5 inches
     width: 76   // 3 inches
     height: 80  // ??? inches
     
 */
+
 OVERALL_LENGTH = 130;
 OVERALL_WIDTH = 80;
 OVERALL_HEIGHT = 60; // 80;
@@ -64,6 +59,8 @@ module base(){
         }
         
         // cutout for phone, power jacks
+        // TODO: this spacing needs to accomodate actual
+        // jack body dimensions
         translate([-WALL_THICKNESS/2,W/4,H/2]){
             rotate([0,90,0]){
                 cylinder(r=PHONE_JACK_OPENING/2,h=WALL_THICKNESS*2);
@@ -98,7 +95,8 @@ module control_panel(){
         
         // cutouts for pot shafts
         // TODO: make number of pots dynamic
-        // TODO: this spacing needs to accomodate knob diameter
+        // TODO: this spacing needs to accomodate knob diameter &
+        // potentiometer body diameter (whichever is greater)
         translate([L/2,W/3-(KNOB_DIAMETER/2),H-WALL_THICKNESS-1]){
             cylinder(r=FOOTSWITCH_SHAFT_DIAMETER/2,h=WALL_THICKNESS*2);
         }
@@ -108,6 +106,8 @@ module control_panel(){
         translate([L/2,(W-W/3)+(KNOB_DIAMETER/2),H-WALL_THICKNESS-1]){
             cylinder(r=FOOTSWITCH_SHAFT_DIAMETER/2,h=WALL_THICKNESS*2);
         }
+        
+        // TODO: cutout(s) for LED(s) or other indicators
     } 
 }
 
