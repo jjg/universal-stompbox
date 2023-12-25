@@ -58,6 +58,11 @@ module base(){
             cube([L-(WALL_THICKNESS*2), W-(WALL_THICKNESS*2), H]);
         }
         
+        // cutout for cover
+        translate([L-(OVERALL_LENGTH - (OVERALL_LENGTH * .3)),0,H*.25]){
+            cover();
+        }
+        
         // cutout for phone, power jacks
         // TODO: this spacing needs to accomodate actual
         // jack body dimensions
@@ -80,6 +85,8 @@ module base(){
 }
 
 // TODO: control panel needs some kind of attachment to base
+// TODO: consider merging control panel and base if it doesn't
+// cause major printability issues
 module control_panel(){
     L = OVERALL_LENGTH * .3;    // one-third overall length, might change
     W = OVERALL_WIDTH;
@@ -116,7 +123,7 @@ module control_panel(){
 module cover(){
     L = OVERALL_LENGTH - (OVERALL_LENGTH * .3);
     W = OVERALL_WIDTH;
-    H = OVERALL_HEIGHT * .3;    // other half of the height
+    H = OVERALL_HEIGHT * .75;    // other 3/4 of the height
 
     difference(){
         cube([L,W,H]);
@@ -138,7 +145,7 @@ EXPLODE = 1.25;
 
 base();
 
-translate([OVERALL_LENGTH-BREADBOARD_LENGTH-WALL_THICKNESS,0,WALL_THICKNESS]){
+translate([OVERALL_LENGTH-BREADBOARD_LENGTH-WALL_THICKNESS-1,WALL_THICKNESS+1,WALL_THICKNESS]){
     breadboard();
 }
 
