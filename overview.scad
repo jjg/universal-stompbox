@@ -61,13 +61,13 @@ module base(){
         // cutout for phone, power jacks
         // TODO: this spacing needs to accomodate actual
         // jack body dimensions
-        translate([-WALL_THICKNESS/2,W/4,H/2]){
-            rotate([0,90,0]){
+        translate([L*.15,WALL_THICKNESS+1,H/2]){
+            rotate([90,0,0]){
                 cylinder(r=PHONE_JACK_OPENING/2,h=WALL_THICKNESS*2);
             }
         }
-        translate([-WALL_THICKNESS/2,W-(W/4),H/2]){
-            rotate([0,90,0]){
+        translate([L*.15,W+1,H/2]){
+            rotate([90,0,0]){
                 cylinder(r=PHONE_JACK_OPENING/2,h=WALL_THICKNESS*2);
             }
         }
