@@ -19,16 +19,19 @@
 */
 
 OVERALL_LENGTH = 130;
-OVERALL_WIDTH = 80;
+OVERALL_WIDTH = 80;             // TODO: consider making wide enough for a 9v battery
 OVERALL_HEIGHT = 60; // 80;
 
 WALL_THICKNESS = 3;
+TOLERANCE = 1;
 
-PHONE_JACK_OPENING = 10;        // a guess
-POWER_JACK_OPENING = 5;         // a guess
-POT_SHAFT_DIAMETER = 10;        // a guess
-FOOTSWITCH_SHAFT_DIAMETER = 10; // a guess
+PHONE_JACK_OPENING = 10;        // 9.53 actual
+POWER_JACK_OPENING = 8;
+POT_BODY_DIAMETER = 25;
+POT_SHAFT_DIAMETER = 6.5;
+FOOTSWITCH_SHAFT_DIAMETER = 12;
 KNOB_DIAMETER = 15;             // a guess
+LED_DIAMETER = 5;               // a guess
 BREADBOARD_LENGTH = 85;
 
 module breadboard(){
@@ -59,7 +62,7 @@ module base(){
         }
         
         // cutout for cover
-        translate([L-(OVERALL_LENGTH - (OVERALL_LENGTH * .3)),0,H*.25]){
+        translate([L-(OVERALL_LENGTH - (OVERALL_LENGTH * .3)),0,OVERALL_HEIGHT*.25]){
             cover();
         }
         
@@ -68,25 +71,24 @@ module base(){
         // jack body dimensions
         translate([L*.15,WALL_THICKNESS+1,H/2]){
             rotate([90,0,0]){
-                cylinder(r=PHONE_JACK_OPENING/2,h=WALL_THICKNESS*2);
+                cylinder(r=(PHONE_JACK_OPENING+TOLERANCE)/2,h=WALL_THICKNESS*2);
             }
         }
         translate([L*.15,W+1,H/2]){
             rotate([90,0,0]){
-                cylinder(r=PHONE_JACK_OPENING/2,h=WALL_THICKNESS*2);
+                cylinder(r=(PHONE_JACK_OPENING+TOLERANCE)/2,h=WALL_THICKNESS*2);
             }
         }
         translate([-WALL_THICKNESS/2,W/2,H/2]){
             rotate([0,90,0]){
-                cylinder(r=POWER_JACK_OPENING/2,h=WALL_THICKNESS*2);
+                cylinder(r=(POWER_JACK_OPENING+TOLERANCE)/2,h=WALL_THICKNESS*2);
             }
         }
     }
 }
 
 // TODO: control panel needs some kind of attachment to base
-// TODO: consider merging control panel and base if it doesn't
-// cause major printability issues
+// TODO: consider merging control panel and base
 module control_panel(){
     L = OVERALL_LENGTH * .3;    // one-third overall length, might change
     W = OVERALL_WIDTH;
@@ -102,19 +104,20 @@ module control_panel(){
         
         // cutouts for pot shafts
         // TODO: make number of pots dynamic
-        // TODO: this spacing needs to accomodate knob diameter &
-        // potentiometer body diameter (whichever is greater)
-        translate([L/2,W/3-(KNOB_DIAMETER/2),H-WALL_THICKNESS-1]){
-            cylinder(r=FOOTSWITCH_SHAFT_DIAMETER/2,h=WALL_THICKNESS*2);
+        translate([L/2,W/3-(POT_BODY_DIAMETER/2),H-WALL_THICKNESS-1]){
+            cylinder(r=(POT_SHAFT_DIAMETER+TOLERANCE)/2,h=WALL_THICKNESS*2);
         }
         translate([L/2,W/2,H-WALL_THICKNESS-1]){
-            cylinder(r=FOOTSWITCH_SHAFT_DIAMETER/2,h=WALL_THICKNESS*2);
+            cylinder(r=(POT_SHAFT_DIAMETER+TOLERANCE)/2,h=WALL_THICKNESS*2);
         }
-        translate([L/2,(W-W/3)+(KNOB_DIAMETER/2),H-WALL_THICKNESS-1]){
-            cylinder(r=FOOTSWITCH_SHAFT_DIAMETER/2,h=WALL_THICKNESS*2);
+        translate([L/2,(W-W/3)+(POT_BODY_DIAMETER/2),H-WALL_THICKNESS-1]){
+            cylinder(r=(POT_SHAFT_DIAMETER+TOLERANCE)/2,h=WALL_THICKNESS*2);
         }
         
-        // TODO: cutout(s) for LED(s) or other indicators
+        // cutouts for LEDs, etc.
+        translate([WALL_THICKNESS*2+TOLERANCE,W*.33,H-WALL_THICKNESS-1]){
+            cylinder(r=(LED_DIAMETER+TOLERANCE)/2,h=WALL_THICKNESS*2);
+        }
     } 
 }
 
@@ -135,13 +138,15 @@ module cover(){
         
         // cutout for footswitch
         translate([L/2,W/2,H-WALL_THICKNESS-1]){
-            cylinder(r=FOOTSWITCH_SHAFT_DIAMETER/2,h=WALL_THICKNESS*2);
+            cylinder(r=(FOOTSWITCH_SHAFT_DIAMETER+TOLERANCE)/2,h=WALL_THICKNESS*2);
         }
     }
 }
 
 // preview
-EXPLODE = 1.25;
+$fn=50;
+
+EXPLODE = 1.5;//1.25;
 
 base();
 
@@ -153,6 +158,6 @@ translate([0,0,(OVERALL_HEIGHT - (OVERALL_HEIGHT*.3))*EXPLODE]){
     control_panel();
 }
 
-translate([OVERALL_LENGTH*.5,0,(OVERALL_HEIGHT - (OVERALL_HEIGHT*.3))*EXPLODE]){
+translate([(OVERALL_LENGTH*.3)*EXPLODE,0,(OVERALL_HEIGHT*.25)*EXPLODE]){
     cover();
 }
