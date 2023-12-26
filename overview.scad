@@ -55,7 +55,14 @@ module base(){
     H = OVERALL_HEIGHT - OVERALL_HEIGHT *.3;  // 2/3 the overall height, might need to go lower
     
     difference(){
-        cube([L,W,H]);
+        union(){
+            cube([L,W,H]);
+            
+            // incorporate control panel
+            translate([0,0,OVERALL_HEIGHT - (OVERALL_HEIGHT*.3)]){
+                control_panel();
+            }            
+        }
         
         // carve-out for breadboard, power supply
         translate([WALL_THICKNESS,WALL_THICKNESS,WALL_THICKNESS]){
@@ -63,8 +70,14 @@ module base(){
         }
         
         // cutout for cover
-        translate([L-(OVERALL_LENGTH - (OVERALL_LENGTH * .3)),0,OVERALL_HEIGHT*.25]){
-            cover();
+        translate([(L*.3)-8,0,H*.3+3]){
+            rotate([0,15,0]){
+                cover();
+            }
+        }
+        // TODO: this is kind of jacked-up and will break if sized
+        translate([L*.5,0,H*.59]){
+            cube([L,W,H]);
         }
         
         // cutout for phone, power jacks
@@ -85,11 +98,18 @@ module base(){
                 cylinder(r=(POWER_JACK_OPENING+TOLERANCE)/2,h=WALL_THICKNESS*2);
             }
         }
+        
+        // stamp with version
+        translate([L-1,WALL_THICKNESS,1]){
+            rotate([90,0,90]){
+                linear_extrude(2){
+                    #text("V0.2");
+                }
+            }
+        }
     }
 }
 
-// TODO: control panel needs some kind of attachment to base
-// TODO: consider merging control panel and base
 module control_panel(){
     L = OVERALL_LENGTH * .3;    // one-third overall length, might change
     W = OVERALL_WIDTH;
@@ -104,7 +124,7 @@ module control_panel(){
         }
         
         // cutouts for pot shafts
-        // TODO: make number of pots dynamic
+        // TODO: make number of pots dynamic (maybe widen box if needed...)
         translate([L/2,W/3-(POT_BODY_DIAMETER/2),H-WALL_THICKNESS-1]){
             cylinder(r=(POT_SHAFT_DIAMETER+TOLERANCE)/2,h=WALL_THICKNESS*2);
         }
@@ -117,13 +137,12 @@ module control_panel(){
         
         // cutouts for LEDs, etc.
         translate([WALL_THICKNESS*2+TOLERANCE,W*.33,H-WALL_THICKNESS-1]){
-            cylinder(r=(LED_DIAMETER+TOLERANCE)/2,h=WALL_THICKNESS*2);
+            cylinder(r=(LED_DIAMETER)/2,h=WALL_THICKNESS*2);
         }
     } 
 }
 
 // TODO: cover needs some kind of attachment to base
-// TODO: might be cool to angle the cover a bit toward the foot
 module cover(){
     L = OVERALL_LENGTH - (OVERALL_LENGTH * .3);
     W = OVERALL_WIDTH;
@@ -132,9 +151,16 @@ module cover(){
     difference(){
         cube([L,W,H]);
         
-        // cutout
+        // hollow
         translate([-1,WALL_THICKNESS,-1]){
             cube([L-(WALL_THICKNESS)+1,W-(WALL_THICKNESS*2),H-WALL_THICKNESS+1]);
+        }
+        
+        // cut angle
+        translate([0,-1,-H]){
+            rotate([0,-15,0]){
+                cube([L*1.25,W+2,H]);
+            }
         }
         
         // cutout for footswitch
@@ -142,23 +168,37 @@ module cover(){
             cylinder(r=(FOOTSWITCH_SHAFT_DIAMETER+TOLERANCE)/2,h=WALL_THICKNESS*2);
         }
     }
+    
+    // tabs to keep cover locked in y dimension
+    translate([0,WALL_THICKNESS,1.05]){
+        cube([10,WALL_THICKNESS,5]);
+    }
+    translate([0,W-WALL_THICKNESS*2,1.05]){
+        cube([10,WALL_THICKNESS,10]);
+    }
+    translate([L-10-WALL_THICKNESS,WALL_THICKNESS,H-5-WALL_THICKNESS]){
+        cube([10,WALL_THICKNESS,5]);
+    }
+    translate([L-10-WALL_THICKNESS,W-WALL_THICKNESS*2,H-5-WALL_THICKNESS]){
+        cube([10,WALL_THICKNESS,5]);
+    }
 }
 
 // preview
 $fn=50;
 
-EXPLODE = 1.5;//1.25;
+EXPLODE = 3;//1.25;
 
+color("red")
 base();
 
 translate([OVERALL_LENGTH-BREADBOARD_LENGTH-WALL_THICKNESS-1,WALL_THICKNESS+1,WALL_THICKNESS]){
-    breadboard();
+    //breadboard();
 }
 
-translate([0,0,OVERALL_HEIGHT - (OVERALL_HEIGHT*.3)]){
-    control_panel();
-}
-
-translate([(OVERALL_LENGTH*.3)*EXPLODE,0,(OVERALL_HEIGHT*.25)*EXPLODE]){
-    cover();
+color("blue")
+translate([((OVERALL_LENGTH*.3)-8)*(EXPLODE*.5),0,((OVERALL_HEIGHT *.3)-1)*EXPLODE]){
+    rotate([0,15,0]){
+        cover();
+    }
 }
