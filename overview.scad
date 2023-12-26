@@ -19,7 +19,7 @@
 */
 
 OVERALL_LENGTH = 130;
-OVERALL_WIDTH = 80;             // TODO: consider making wide enough for a 9v battery
+OVERALL_WIDTH = 80;
 OVERALL_HEIGHT = 40; //60; // 80;
 
 WALL_THICKNESS = 3;
@@ -46,7 +46,8 @@ module knob(){
     cylinder(r=D/2,h=10);
 }
 
-// TODO: base needs some kind of attachment to cover, control panel
+// TODO: base needs some kind of attachment to cover
+// TODO: Add something to hold 9v in place
 module base(){
     
     L = OVERALL_LENGTH;
@@ -154,7 +155,7 @@ translate([OVERALL_LENGTH-BREADBOARD_LENGTH-WALL_THICKNESS-1,WALL_THICKNESS+1,WA
     breadboard();
 }
 
-translate([0,0,(OVERALL_HEIGHT - (OVERALL_HEIGHT*.3))*EXPLODE]){
+translate([0,0,OVERALL_HEIGHT - (OVERALL_HEIGHT*.3)]){
     control_panel();
 }
 
