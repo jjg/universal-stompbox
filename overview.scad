@@ -20,7 +20,7 @@
 
 OVERALL_LENGTH = 130;
 OVERALL_WIDTH = 80;             // TODO: consider making wide enough for a 9v battery
-OVERALL_HEIGHT = 60; // 80;
+OVERALL_HEIGHT = 40; //60; // 80;
 
 WALL_THICKNESS = 3;
 TOLERANCE = 1;
