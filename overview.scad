@@ -29,6 +29,7 @@ PHONE_JACK_OPENING = 10;        // 9.53 actual
 POWER_JACK_OPENING = 8;
 POT_BODY_DIAMETER = 25;
 POT_SHAFT_DIAMETER = 6.5;
+SWITCH_SHAFT_DIAMETER = 5;
 FOOTSWITCH_SHAFT_DIAMETER = 12;
 KNOB_DIAMETER = 15;             // a guess
 LED_DIAMETER = 5;               // a guess
@@ -100,7 +101,7 @@ module base(){
         }
         
         // stamp with version
-        translate([L-1,WALL_THICKNESS,1]){
+        translate([L-1,WALL_THICKNESS,WALL_THICKNESS]){
             rotate([90,0,90]){
                 linear_extrude(2){
                     #text("V0.2");
@@ -129,7 +130,7 @@ module control_panel(){
             cylinder(r=(POT_SHAFT_DIAMETER+TOLERANCE)/2,h=WALL_THICKNESS*2);
         }
         translate([L/2,W/2,H-WALL_THICKNESS-1]){
-            cylinder(r=(POT_SHAFT_DIAMETER+TOLERANCE)/2,h=WALL_THICKNESS*2);
+            cylinder(r=(SWITCH_SHAFT_DIAMETER+TOLERANCE)/2,h=WALL_THICKNESS*2);
         }
         translate([L/2,(W-W/3)+(POT_BODY_DIAMETER/2),H-WALL_THICKNESS-1]){
             cylinder(r=(POT_SHAFT_DIAMETER+TOLERANCE)/2,h=WALL_THICKNESS*2);
