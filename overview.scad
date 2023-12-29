@@ -27,14 +27,14 @@ EXTRA_BASE = 12;                // temporary
 WALL_THICKNESS = 3;
 TOLERANCE = 1;
 
-PHONE_JACK_OPENING = 10;        // 9.53 actual
+PHONE_JACK_OPENING = 9.5;        // 9.53 actual
 POWER_JACK_OPENING = 8;
 POT_BODY_DIAMETER = 25;
 POT_SHAFT_DIAMETER = 6.5;
 SWITCH_SHAFT_DIAMETER = 5;
 FOOTSWITCH_SHAFT_DIAMETER = 12;
 KNOB_DIAMETER = 15;             // a guess
-LED_DIAMETER = 5;               // a guess
+LED_DIAMETER = 5.5;
 BREADBOARD_LENGTH = 85;
 
 module breadboard(){
@@ -78,7 +78,7 @@ module base(){
             //cube([L-(WALL_THICKNESS*2), W-(WALL_THICKNESS*2), H]);
             
             // TODO: integrate this temporary addition into the parameteric model
-            translate([0,0,-10+WALL_THICKNESS]){
+            translate([0,0,-EXTRA_BASE]){
                 cube([L-(WALL_THICKNESS*2), W-(WALL_THICKNESS*2), H+EXTRA_BASE]);
             }
         }
