@@ -17,10 +17,12 @@
     height: 80  // ??? inches
     
 */
+VERSION = "V.03";
 
 OVERALL_LENGTH = 130;
 OVERALL_WIDTH = 80;
 OVERALL_HEIGHT = 40; //60; // 80;
+EXTRA_BASE = 12;                // temporary
 
 WALL_THICKNESS = 3;
 TOLERANCE = 1;
@@ -57,7 +59,13 @@ module base(){
     
     difference(){
         union(){
+            
             cube([L,W,H]);
+            
+            // TODO: integrate this temporary addition into the parametric model
+            translate([0,0,-EXTRA_BASE]){
+                cube([L,W,EXTRA_BASE]);
+            }
             
             // incorporate control panel
             translate([0,0,OVERALL_HEIGHT - (OVERALL_HEIGHT*.3)]){
@@ -67,7 +75,12 @@ module base(){
         
         // carve-out for breadboard, power supply
         translate([WALL_THICKNESS,WALL_THICKNESS,WALL_THICKNESS]){
-            cube([L-(WALL_THICKNESS*2), W-(WALL_THICKNESS*2), H]);
+            //cube([L-(WALL_THICKNESS*2), W-(WALL_THICKNESS*2), H]);
+            
+            // TODO: integrate this temporary addition into the parameteric model
+            translate([0,0,-10+WALL_THICKNESS]){
+                cube([L-(WALL_THICKNESS*2), W-(WALL_THICKNESS*2), H+EXTRA_BASE]);
+            }
         }
         
         // cutout for cover
@@ -104,7 +117,7 @@ module base(){
         translate([L-1,WALL_THICKNESS,WALL_THICKNESS]){
             rotate([90,0,90]){
                 linear_extrude(2){
-                    #text("V0.2");
+                    text(VERSION);
                 }
             }
         }
@@ -200,6 +213,6 @@ translate([OVERALL_LENGTH-BREADBOARD_LENGTH-WALL_THICKNESS-1,WALL_THICKNESS+1,WA
 color("blue")
 translate([((OVERALL_LENGTH*.3)-8)*(EXPLODE*.5),0,((OVERALL_HEIGHT *.3)-1)*EXPLODE]){
     rotate([0,15,0]){
-        cover();
+        //cover();
     }
 }
