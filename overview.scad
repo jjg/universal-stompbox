@@ -17,7 +17,7 @@
     height: 80  // ??? inches
     
 */
-VERSION = "V.03";
+VERSION = "V.04";
 
 OVERALL_LENGTH = 130;
 OVERALL_WIDTH = 80;
@@ -252,20 +252,25 @@ $fn=50;
 
 EXPLODE = 3;//1.25;
 
-color("red")
-//base();
+color("lime")
+base();
 
 translate([OVERALL_LENGTH-BREADBOARD_LENGTH-WALL_THICKNESS-1,WALL_THICKNESS+1,WALL_THICKNESS]){
     //breadboard();
 }
 
-color("blue")
+color("purple")
 translate([((OVERALL_LENGTH*.3)-8)*(EXPLODE*.5),0,((OVERALL_HEIGHT *.3)-1)*EXPLODE]){
     rotate([0,15,0]){
-        //cover();
+        cover();
     }
 }
 
-translate([0,0,0]){
+color("purple")
+translate([(OVERALL_LENGTH * .3/2),OVERALL_WIDTH/3-(POT_BODY_DIAMETER/2),OVERALL_HEIGHT+EXPLODE]){
+    knob(knurls=5,position=-1,topper=false);
+}
+color("purple")
+translate([(OVERALL_LENGTH * .3)/2,OVERALL_WIDTH-(OVERALL_WIDTH/3-(POT_BODY_DIAMETER/2)),OVERALL_HEIGHT+EXPLODE]){
     knob(knurls=5,position=-1,topper=false);
 }
