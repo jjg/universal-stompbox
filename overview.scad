@@ -33,9 +33,13 @@ POT_BODY_DIAMETER = 25;
 POT_SHAFT_DIAMETER = 6.5;
 SWITCH_SHAFT_DIAMETER = 5;
 FOOTSWITCH_SHAFT_DIAMETER = 12;
-KNOB_DIAMETER = 15;             // a guess
 LED_DIAMETER = 5.5;
 BREADBOARD_LENGTH = 85;
+
+// knobs
+KNOB_DIAMETER = 15;
+KNOB_HEIGHT = 16.5;
+KNOB_HOLE_DIAMETER = 6;
 
 module breadboard(){
     L = 85;
@@ -44,9 +48,54 @@ module breadboard(){
     cube([L, W, H]);
 }
 
-module knob(){
-    D = 10; // a guess
-    cylinder(r=D/2,h=10);
+module knob(knurls=5,position=-1,topper=false){
+    difference(){
+        union(){
+            hull(){
+                cylinder(r=KNOB_DIAMETER/2,h=KNOB_HEIGHT);
+                
+                // positive position indicator
+                if(position > 0){
+                    rotate([0,0,(360/knurls)*1.5]){
+                        translate([KNOB_DIAMETER/2.5,-0.25,0]){
+                            cube([4,0.5,KNOB_HEIGHT]);
+                        }
+                    }
+                }
+                
+                // topper
+                if(topper){
+                    translate([0,0,KNOB_HEIGHT]){
+                        sphere(r=KNOB_DIAMETER/2);
+                    }
+                }
+            }
+            
+        }
+        translate([0,0,-WALL_THICKNESS]){
+            
+            // pot post opening
+            cylinder(r=KNOB_HOLE_DIAMETER/2,h=KNOB_HEIGHT);
+            
+            // knurls
+            for(i=[1:knurls]){
+                rotate([0,0,(360/knurls)*i]){
+                    translate([KNOB_DIAMETER/1.5,0,WALL_THICKNESS*2]){
+                        cylinder(r=KNOB_DIAMETER/4,h=KNOB_HEIGHT+WALL_THICKNESS);
+                    }
+                }
+            }
+            
+            // negative position indicator
+            if(position < 0){
+                rotate([0,0,(360/knurls)*1.5]){
+                    translate([KNOB_DIAMETER/3,-0.5,WALL_THICKNESS*2]){
+                        cube([4,1,KNOB_HEIGHT]);
+                    }
+                }
+            }
+        }
+    }
 }
 
 // TODO: base needs some kind of attachment to cover
@@ -204,7 +253,7 @@ $fn=50;
 EXPLODE = 3;//1.25;
 
 color("red")
-base();
+//base();
 
 translate([OVERALL_LENGTH-BREADBOARD_LENGTH-WALL_THICKNESS-1,WALL_THICKNESS+1,WALL_THICKNESS]){
     //breadboard();
@@ -215,4 +264,8 @@ translate([((OVERALL_LENGTH*.3)-8)*(EXPLODE*.5),0,((OVERALL_HEIGHT *.3)-1)*EXPLO
     rotate([0,15,0]){
         //cover();
     }
+}
+
+translate([0,0,0]){
+    knob(knurls=5,position=-1,topper=false);
 }
