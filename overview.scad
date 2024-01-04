@@ -250,25 +250,26 @@ module cover(){
 // preview
 $fn=50;
 
-EXPLODE = 3;//1.25;
+EXPLODE = 2;//3;//1.25;
 
 color("lime")
-//base();
+base();
 
+color("white")
 translate([OVERALL_LENGTH-BREADBOARD_LENGTH-WALL_THICKNESS-1,WALL_THICKNESS+1,WALL_THICKNESS]){
-    //breadboard();
+    breadboard();
 }
 
 color("purple")
 translate([((OVERALL_LENGTH*.3)-8)*(EXPLODE*.5),0,((OVERALL_HEIGHT *.3)-1)*EXPLODE]){
     rotate([0,15,0]){
-        //cover();
+        cover();
     }
 }
 
 color("purple")
 translate([(OVERALL_LENGTH * .3/2),OVERALL_WIDTH/3-(POT_BODY_DIAMETER/2),OVERALL_HEIGHT+EXPLODE]){
-    //knob(knurls=5,position=-1,topper=false);
+    knob(knurls=5,position=-1,topper=false);
 }
 color("purple")
 translate([(OVERALL_LENGTH * .3)/2,OVERALL_WIDTH-(OVERALL_WIDTH/3-(POT_BODY_DIAMETER/2)),OVERALL_HEIGHT+EXPLODE]){
