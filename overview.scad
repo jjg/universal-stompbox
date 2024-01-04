@@ -75,7 +75,7 @@ module knob(knurls=5,position=-1,topper=false){
         translate([0,0,-WALL_THICKNESS]){
             
             // pot post opening
-            cylinder(r=KNOB_HOLE_DIAMETER/2,h=KNOB_HEIGHT);
+            cylinder(r=(KNOB_HOLE_DIAMETER+TOLERANCE)/2,h=KNOB_HEIGHT);
             
             // knurls
             for(i=[1:knurls]){
@@ -253,7 +253,7 @@ $fn=50;
 EXPLODE = 3;//1.25;
 
 color("lime")
-base();
+//base();
 
 translate([OVERALL_LENGTH-BREADBOARD_LENGTH-WALL_THICKNESS-1,WALL_THICKNESS+1,WALL_THICKNESS]){
     //breadboard();
@@ -262,13 +262,13 @@ translate([OVERALL_LENGTH-BREADBOARD_LENGTH-WALL_THICKNESS-1,WALL_THICKNESS+1,WA
 color("purple")
 translate([((OVERALL_LENGTH*.3)-8)*(EXPLODE*.5),0,((OVERALL_HEIGHT *.3)-1)*EXPLODE]){
     rotate([0,15,0]){
-        cover();
+        //cover();
     }
 }
 
 color("purple")
 translate([(OVERALL_LENGTH * .3/2),OVERALL_WIDTH/3-(POT_BODY_DIAMETER/2),OVERALL_HEIGHT+EXPLODE]){
-    knob(knurls=5,position=-1,topper=false);
+    //knob(knurls=5,position=-1,topper=false);
 }
 color("purple")
 translate([(OVERALL_LENGTH * .3)/2,OVERALL_WIDTH-(OVERALL_WIDTH/3-(POT_BODY_DIAMETER/2)),OVERALL_HEIGHT+EXPLODE]){
