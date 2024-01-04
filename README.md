@@ -11,6 +11,8 @@ Then the idea came to keep the pedal form-factor but make replacing the electron
 
 I also chose a breadboard size that exactly matches the [Adafruit perma-proto](https://www.adafruit.com/product/571) so it can also be used for permanent designs if so desired.
 
+Additional details about this project can be found in this [blog post](https://jasongullickson.com/universal-stompbox.html)
+
 ## Minerals
 * 3PDT footswitch ([Amazon](https://www.amazon.com/ESUPPORT-Guitar-Effect-Switch-Bypass/dp/B012CF181K/ref=sr_1_3?crid=3OFZ0CN4QBI8L&keywords=true%2Bbypass%2Bfootswitch&qid=1704382921&sprefix=true%2Bbypass%2Bfootswitch%2Caps%2C122&sr=8-3&th=1)
 * Potentiometers (BK10, 24mm x 17mm x 25mm) ([Adafruit](https://www.adafruit.com/product/562))
@@ -27,7 +29,9 @@ Parts are designed to print without support if placed in the vertical position l
 
 ## Electronics
 
-Currently all point-to-point wiring to bring the input and control signals to the breadboard.  Eventually I'll design a circuit board for this to eliminate some of this wiring.
+Currently all connections are made with point-to-point wiring to bring the input and control signals to the breadboard.  Eventually I'll design a circuit board for this to eliminate some of this wiring.
+
+![photo of inside of pedal showing footswitch wiring](inside.jpeg)
 
 The footswich is wired for [true bypass](https://www.coda-effects.com/2015/03/3pdt-and-true-bypass-wiring.html), leaving 3-4 connections leading to the breadboard for signal input and output (I say 3-4 because you could probably get away with a single ground).
 
