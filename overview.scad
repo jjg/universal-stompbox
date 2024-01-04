@@ -250,14 +250,14 @@ module cover(){
 // preview
 $fn=50;
 
-EXPLODE = 2;//3;//1.25;
+EXPLODE = 3;
 
 color("lime")
 base();
 
 color("white")
 translate([OVERALL_LENGTH-BREADBOARD_LENGTH-WALL_THICKNESS-1,WALL_THICKNESS+1,WALL_THICKNESS]){
-    breadboard();
+    //breadboard();
 }
 
 color("purple")

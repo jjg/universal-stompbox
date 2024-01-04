@@ -1,7 +1,7 @@
 # Universal Stompbox
 Any pedal you can think of.
 
-![preview render of stompbox parts](overview_render_v4.png)
+![preview render of stompbox parts](images/overview_render_v4.png)
 
 I got this idea while reading [Electronics Projects for Musicians](https://archive.org/details/electronicprojec0000ande).  There's a lot of cool projects in there, but like most guitarists you want something that has a sound that suits you, and I wasn't sure about building these whole projects without being able to try them out a bit.
 
@@ -24,14 +24,16 @@ Additional details about this project can be found in this [blog post](https://j
 
 ## Printing
 
+Ready-to-print files can be found in the [stls](stls) directory.  If you want to customize things, the [OpenSCAD](https://openscad.org/) source is provided in [overview.scad](overview.scad) (be warned, it's a bit rough yet)
+
 Parts are designed to print without support if placed in the vertical position like this:
-![parts in vertical orientation in slicing software](usb_complete_slicing.png)
+![parts in vertical orientation in slicing software](images/usb_complete_slicing.png)
 
 ## Electronics
 
 Currently all connections are made with point-to-point wiring to bring the input and control signals to the breadboard.  Eventually I'll design a circuit board for this to eliminate some of this wiring.
 
-![photo of inside of pedal showing footswitch wiring](inside.jpeg)
+![photo of inside of pedal showing footswitch wiring](images/inside.jpeg)
 
 The footswich is wired for [true bypass](https://www.coda-effects.com/2015/03/3pdt-and-true-bypass-wiring.html), leaving 3-4 connections leading to the breadboard for signal input and output (I say 3-4 because you could probably get away with a single ground).
 
@@ -43,4 +45,5 @@ The footswich is wired for [true bypass](https://www.coda-effects.com/2015/03/3p
 * Clean-up the code for modularity, configurability
 * Add something to hold breadboard in place
 * Add a schematic for the footswitch wiring 
+* Replace raw pushbutton with smaller internal button and turn cover into moving pedal piece
 
