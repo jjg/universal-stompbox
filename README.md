@@ -1,7 +1,7 @@
 # Universal Stompbox
 Any pedal you can think of.
 
-![preview render of stompbox parts](overview_render.png)
+![preview render of stompbox parts](overview_render_v4.png)
 
 I got this idea while reading [Electronics Projects for Musicians](https://archive.org/details/electronicprojec0000ande).  There's a lot of cool projects in there, but like most guitarists you want something that has a sound that suits you, and I wasn't sure about building these whole projects without being able to try them out a bit.
 
