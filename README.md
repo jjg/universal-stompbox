@@ -14,6 +14,7 @@ I also chose a breadboard size that exactly matches the [Adafruit perma-proto](h
 ## Minerals
 * 3PDT footswitch ([Amazon](https://www.amazon.com/ESUPPORT-Guitar-Effect-Switch-Bypass/dp/B012CF181K/ref=sr_1_3?crid=3OFZ0CN4QBI8L&keywords=true%2Bbypass%2Bfootswitch&qid=1704382921&sprefix=true%2Bbypass%2Bfootswitch%2Caps%2C122&sr=8-3&th=1)
 * Potentiometers (BK10, 24mm x 17mm x 25mm) ([Adafruit](https://www.adafruit.com/product/562))
+* 5mm LED ([Adafruit](https://www.adafruit.com/product/4203))
 * Phone jacks ([Amazon](https://www.amazon.com/6-35mm-Female-Microphone-Connector-Adapter/dp/B08MT66VPX/ref=sr_1_4?crid=277SYRYCNU1DJ&keywords=phone+jack+mono&qid=1704383187&sprefix=phone+jack+mono%2Caps%2C145&sr=8-4))
 * Power jack ([Amazon](https://www.amazon.com/DIYhz-Socket-Female-Mounting-Connector/dp/B09W9SJ1B6/ref=sr_1_6?crid=1748WOZ1SW6FB&keywords=dc%2Bpower%2Bjack&qid=1704383393&s=industrial&sprefix=dc%2Bpower%2Bjack%2Cindustrial%2C152&sr=1-6&th=1))
 * Breadboard ([Adafruit](https://www.adafruit.com/product/4539))
@@ -24,6 +25,11 @@ I also chose a breadboard size that exactly matches the [Adafruit perma-proto](h
 Parts are designed to print without support if placed in the vertical position like this:
 ![parts in vertical orientation in slicing software](usb_complete_slicing.png)
 
+## Electronics
+
+Currently all point-to-point wiring to bring the input and control signals to the breadboard.  Eventually I'll design a circuit board for this to eliminate some of this wiring.
+
+The footswich is wired for [true bypass](https://www.coda-effects.com/2015/03/3pdt-and-true-bypass-wiring.html), leaving 3-4 connections leading to the breadboard for signal input and output (I say 3-4 because you could probably get away with a single ground).
 
 ## TODO
 
@@ -32,5 +38,5 @@ Parts are designed to print without support if placed in the vertical position l
 * Fix some weird bugs (like the tiny lip just below the control panel)
 * Clean-up the code for modularity, configurability
 * Add something to hold breadboard in place
-* 
+* Add a schematic for the footswitch wiring 
 
