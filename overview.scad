@@ -17,6 +17,8 @@
     height: 80  // ??? inches
     
 */
+include <../models/components/knob.scad>
+
 VERSION = "V.04";
 
 OVERALL_LENGTH = 130;
@@ -46,56 +48,6 @@ module breadboard(){
     W = 56;
     H = 9.6;
     cube([L, W, H]);
-}
-
-module knob(knurls=5,position=-1,topper=false){
-    difference(){
-        union(){
-            hull(){
-                cylinder(r=KNOB_DIAMETER/2,h=KNOB_HEIGHT);
-                
-                // positive position indicator
-                if(position > 0){
-                    rotate([0,0,(360/knurls)*1.5]){
-                        translate([KNOB_DIAMETER/2.5,-0.25,0]){
-                            cube([4,0.5,KNOB_HEIGHT]);
-                        }
-                    }
-                }
-                
-                // topper
-                if(topper){
-                    translate([0,0,KNOB_HEIGHT]){
-                        sphere(r=KNOB_DIAMETER/2);
-                    }
-                }
-            }
-            
-        }
-        translate([0,0,-WALL_THICKNESS]){
-            
-            // pot post opening
-            cylinder(r=(KNOB_HOLE_DIAMETER+TOLERANCE)/2,h=KNOB_HEIGHT);
-            
-            // knurls
-            for(i=[1:knurls]){
-                rotate([0,0,(360/knurls)*i]){
-                    translate([KNOB_DIAMETER/1.5,0,WALL_THICKNESS*2]){
-                        cylinder(r=KNOB_DIAMETER/4,h=KNOB_HEIGHT+WALL_THICKNESS);
-                    }
-                }
-            }
-            
-            // negative position indicator
-            if(position < 0){
-                rotate([0,0,(360/knurls)*1.5]){
-                    translate([KNOB_DIAMETER/3,-0.5,WALL_THICKNESS*2]){
-                        cube([4,1,KNOB_HEIGHT]);
-                    }
-                }
-            }
-        }
-    }
 }
 
 // TODO: base needs some kind of attachment to cover
@@ -253,7 +205,7 @@ $fn=50;
 EXPLODE = 3;
 
 color("lime")
-base();
+//base();
 
 color("white")
 translate([OVERALL_LENGTH-BREADBOARD_LENGTH-WALL_THICKNESS-1,WALL_THICKNESS+1,WALL_THICKNESS]){
@@ -269,9 +221,9 @@ translate([((OVERALL_LENGTH*.3)-8)*(EXPLODE*.5),0,((OVERALL_HEIGHT *.3)-1)*EXPLO
 
 color("purple")
 translate([(OVERALL_LENGTH * .3/2),OVERALL_WIDTH/3-(POT_BODY_DIAMETER/2),OVERALL_HEIGHT+EXPLODE]){
-    knob(knurls=5,position=-1,topper=false);
+    //knob(knurls=5,position=-1,topper=false);
 }
 color("purple")
 translate([(OVERALL_LENGTH * .3)/2,OVERALL_WIDTH-(OVERALL_WIDTH/3-(POT_BODY_DIAMETER/2)),OVERALL_HEIGHT+EXPLODE]){
-    knob(knurls=5,position=-1,topper=false);
+    //knob(knurls=5,position=-1,topper=false);
 }
