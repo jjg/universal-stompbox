@@ -221,7 +221,7 @@ translate([((OVERALL_LENGTH*.3)-8)*(EXPLODE*.5),0,((OVERALL_HEIGHT *.3)-1)*EXPLO
 
 color("purple")
 translate([(OVERALL_LENGTH * .3/2),OVERALL_WIDTH/3-(POT_BODY_DIAMETER/2),OVERALL_HEIGHT+EXPLODE]){
-    //knob(knurls=5,position=-1,topper=false);
+    knob(knurls=5,position=-1,topper=false);
 }
 color("purple")
 translate([(OVERALL_LENGTH * .3)/2,OVERALL_WIDTH-(OVERALL_WIDTH/3-(POT_BODY_DIAMETER/2)),OVERALL_HEIGHT+EXPLODE]){
